@@ -1,4 +1,10 @@
-import { withAuthenticator } from "@aws-amplify/ui-react";
+import {Authenticator, useTheme, View, Image, withAuthenticator} from "@aws-amplify/ui-react";
+import BottomNavbar from '../components/BottomNavbar';
+import {useState} from "react";
+import styles from "../styles/Home.module.css";
+import Header from "@/components/Header";
+
+
 
 export function getServerSideProps() {
   const renderedAt = new Date();
@@ -15,16 +21,48 @@ export function getServerSideProps() {
   };
 }
 
-function Home({ signOut, user, renderedAt }) {
+const components = {
+  Header() {
+    const {tokens} = useTheme();
+
+    return (
+        <View textAlign="center" padding={tokens.space.large} backgroundColor={"#047d95"}>
+          <Image
+              alt="Amplify logo"
+              src="https://docs.amplify.aws/assets/logo-dark.svg"
+          />
+        </View>
+    );
+  },
+}
+
+export default function Home({ renderedAt }) {
+  const [activeComponent, setActiveComponent] = useState('Home');
+
   return (
-      <div style={{ padding: 50 }}>
-        <h1>Logged in as {user.username}.</h1>
+      <Authenticator socialProviders={[ 'google']} signUpAttributes={['email', "preferred_username",'birthdate', 'phone_number']} components={components}>
+        {({ signOut, user }) => (
+      <div className={styles.container}>
+        <Header />
         <div>
-          <button onClick={signOut}>Sign out</button>
+
+            {/*<div>
+              <button onClick={signOut}>Sign out</button>
+            </div>*/}
+            <div className={styles.view}>
+              {activeComponent === 'Profile' && <div>C1</div>}
+              {activeComponent === 'Home' && <div>C2</div>}
+              {activeComponent === 'Profile' && <div>C3</div>}
+            </div>
         </div>
-        <p>This page was server-side rendered on {renderedAt}.</p>
+        <BottomNavbar activeComponent={activeComponent} setActiveComponent={setActiveComponent} />
+
       </div>
+
+        )}
+
+      </Authenticator>
+
   );
 }
 
-export default withAuthenticator(Home);
