@@ -1,8 +1,8 @@
 import {Authenticator, useTheme, View, Image, withAuthenticator} from "@aws-amplify/ui-react";
-import BottomNavbar from '@/components/BottomNavbar';
+import BottomNavBar from '@/components/bottomNavBar';
 import {useState} from "react";
 import styles from "../styles/Home.module.css";
-import Header from "@/components/Header";
+import Header from "@/components/header";
 
 
 
@@ -55,7 +55,7 @@ export default function Home({ renderedAt }) {
               {activeComponent === 'Profile' && <div>C3</div>}
             </div>
         </div>
-        <BottomNavbar activeComponent={activeComponent} setActiveComponent={setActiveComponent} />
+        <BottomNavBar activeComponent={activeComponent} setActiveComponent={setActiveComponent} />
 
       </div>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles/BottomNavBar.module.css'
 
-const BottomNavbar = ({ activeComponent, setActiveComponent }) => {
+const BottomNavBar = ({ activeComponent, setActiveComponent }) => {
     return (
         <div className={styles.container}>
             <button className={styles.button}
@@ -30,4 +30,4 @@ const BottomNavbar = ({ activeComponent, setActiveComponent }) => {
     );
 };
 
-export default BottomNavbar;
+export default BottomNavBar;
