@@ -1,5 +1,5 @@
 import {Authenticator, useTheme, View, Image, withAuthenticator} from "@aws-amplify/ui-react";
-import BottomNavbar from '../components/BottomNavbar';
+import BottomNavbar from '@/components/BottomNavbar';
 import {useState} from "react";
 import styles from "../styles/Home.module.css";
 import Header from "@/components/Header";
