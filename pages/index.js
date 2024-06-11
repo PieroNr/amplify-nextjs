@@ -3,6 +3,9 @@ import BottomNavBar from '@/components/bottomNavBar';
 import {useState} from "react";
 import styles from "../styles/Home.module.css";
 import Header from "@/components/header";
+import EventList from "@/components/eventList";
+import HistoryList from "@/components/historyList";
+import Profile from "@/components/profile";
 
 
 
@@ -50,9 +53,9 @@ export default function Home({ renderedAt }) {
               <button onClick={signOut}>Sign out</button>
             </div>*/}
             <div className={styles.view}>
-              {activeComponent === 'Profile' && <div>C1</div>}
-              {activeComponent === 'Home' && <div>C2</div>}
-              {activeComponent === 'Profile' && <div>C3</div>}
+              {activeComponent === 'Profile' && <Profile><button className={styles.signout} onClick={signOut}>Sign out</button></Profile>}
+              {activeComponent === 'Home' && <EventList />}
+              {activeComponent === 'History' && <HistoryList/>}
             </div>
         </div>
         <BottomNavBar activeComponent={activeComponent} setActiveComponent={setActiveComponent} />
